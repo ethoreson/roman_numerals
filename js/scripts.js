@@ -5,12 +5,13 @@ var result = "";
 
 var checkValidity = function(originalArabicString) {
   var arabic = parseInt(originalArabicString);
-  if ((arabic < 1) || (arabic >= 4000)) {
+  if ((isNaN(arabic)) || (arabic < 1) || (arabic >= 4000)) {
     alert("Please enter a valid number between 1-3,999");
   }
   else {
     toRoman(originalArabicString);
   }
+  return result;
 }
 
 var toRoman = function(originalArabicString) {
@@ -22,7 +23,6 @@ var toRoman = function(originalArabicString) {
       i -= 1;
     }
   }
-  console.log(result);
   return result;
 }
 
@@ -32,7 +32,7 @@ $(document).ready(function() {
   $("#submitButton").click(function(event) {
     event.preventDefault();
     var originalArabicString = $("#arabic-input").val();
-    var result = checkValidity(originalArabicString);
-    $(".output").show();
+    var outputResult = checkValidity(originalArabicString);
+    $(".output").text(outputResult);
   });
 });
